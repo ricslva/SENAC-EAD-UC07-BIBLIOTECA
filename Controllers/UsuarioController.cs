@@ -8,6 +8,7 @@ namespace Biblioteca.Controllers
         public IActionResult Cadastro()
         {
             Autenticacao.CheckLogin(this);
+            Autenticacao.CheckAdmin(this);
             return View();
         }
 
@@ -36,12 +37,23 @@ namespace Biblioteca.Controllers
             return View(u);
         }
 
+        public IActionResult Exclusao(int id)
+        {
+            Autenticacao.CheckLogin(this);
+            UsuarioService us = new UsuarioService();
+            Usuario u = us.ObterPorId(id);
+            us.Excluir(u);
+            return RedirectToAction("Listagem");
+        }   
+
          public IActionResult Listagem()
         {
             Autenticacao.CheckLogin(this);
-           
+            Autenticacao.CheckAdmin(this);
+                       
             UsuarioService usuarioService = new UsuarioService();
             return View(usuarioService.ListarTodos());
         }
+        
     }
 }

@@ -27,11 +27,32 @@ namespace Biblioteca.Models
             }
         }
 
+        public void Excluir(Usuario u)
+        {
+            using(BibliotecaContext bc = new BibliotecaContext())
+            {
+                Usuario usuario = bc.Usuarios.Find(u.Id);
+                bc.Remove(usuario);
+                bc.SaveChanges();
+                
+            }
+        }
+
           public Usuario ObterPorId(int id)
         {
             using(BibliotecaContext bc = new BibliotecaContext())
             {
                 return bc.Usuarios.Find(id);
+            }
+        } 
+
+          public Usuario ObterLogin(string Login, string Senha)
+        {
+            using(BibliotecaContext bc = new BibliotecaContext())
+            {                
+                                                  
+                return bc.Usuarios.Where(u => (u.Login.Equals(Login) && u.Senha.Equals(Senha))).FirstOrDefault();;
+
             }
         }
 

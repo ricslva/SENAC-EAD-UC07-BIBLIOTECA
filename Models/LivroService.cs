@@ -33,7 +33,7 @@ namespace Biblioteca.Models
             using(BibliotecaContext bc = new BibliotecaContext())
             {
                 IQueryable<Livro> query;
-                
+                 
                 if(filtro != null)
                 {
                     //definindo dinamicamente a filtragem
@@ -67,7 +67,7 @@ namespace Biblioteca.Models
         {
             using(BibliotecaContext bc = new BibliotecaContext())
             {
-                //busca os livros onde o id não está entre os ids de livro em empréstimo
+                //busca os livros onde o id não está entre os ids de livro em empréstimo 
                 // utiliza uma subconsulta
                 return
                     bc.Livros

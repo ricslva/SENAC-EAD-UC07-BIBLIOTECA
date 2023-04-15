@@ -13,5 +13,15 @@ namespace Biblioteca.Controllers
                 controller.Request.HttpContext.Response.Redirect("/Home/Login");
             }
         }
+
+        public static void CheckAdmin(Controller controller)
+        {   
+            
+            if( controller.HttpContext.Session.GetString("user") != "admin")
+            {
+                controller.Request.HttpContext.Response.Redirect("/Home/Index");
+        
+            }
+        }
     }
 }
