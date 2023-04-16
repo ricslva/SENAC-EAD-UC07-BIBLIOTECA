@@ -8,6 +8,7 @@ namespace Biblioteca.Controllers
         public IActionResult Cadastro()
         {
             Autenticacao.CheckLogin(this);
+            Autenticacao.CheckAdmin(this);
 
             return View();
         }
